@@ -8,21 +8,18 @@ use Laravel\Sanctum\PersonalAccessToken;
 
 class LogoutAction
 {
-    public function execute(): bool
+    public function execute(): void
     {
         $user = Auth::user();
 
-        if (!$user) {
-            return false;
+        if (!$user instanceof User) {
+            return;
         }
 
-        if ($user instanceof User) {
-            $token = $user->currentAccessToken();
-            if ($token instanceof PersonalAccessToken) {
-                $token->forceDelete();
-            }
-        }
+        $token = $user->currentAccessToken();
 
-        return true;
+        if ($token instanceof PersonalAccessToken) {
+            $token->delete();
+        }
     }
 }
