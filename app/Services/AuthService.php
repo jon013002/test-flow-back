@@ -7,6 +7,7 @@ use App\Actions\Auth\ValidateUserCredentialsAction;
 
 use App\Models\User;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthService
@@ -44,8 +45,13 @@ class AuthService
         ];
     }
 
-    public function logout(): bool
+    public function getAuthenticatedUser(): User
     {
-        return $this->logoutAction->execute();
+        return Auth::user() ?? abort(401, 'Unauthenticated.');
+    }
+
+    public function logout(): void
+    {
+        $this->logoutAction->execute();
     }
 }

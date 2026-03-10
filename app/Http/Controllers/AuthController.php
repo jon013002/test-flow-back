@@ -57,17 +57,20 @@ class AuthController extends Controller
         );
     }
 
+    public function getUser()
+    {
+        $user = $this->authService->getAuthenticatedUser();
+        return $this->success(
+            new UserResource($user),
+            'GET',
+            'Information obtained correctly',
+            Response::HTTP_OK,
+        );
+    }
+
     public function logout()
     {
-        $success = $this->authService->logout();
-
-        if (!$success) {
-            return $this->failure(
-                'POST',
-                'Failed to log out',
-                Response::HTTP_UNAUTHORIZED,
-            );
-        }
+        $this->authService->logout();
         return $this->success(
             [],
             'POST',
