@@ -15,23 +15,23 @@ class ModuleData
     )
     {}
 
-    public static function fromStoreRequest(StoreModuleRequest $storeProjectRequest): self
+    public static function fromStoreRequest(StoreModuleRequest $storeModuleRequest): self
     {
         return new self(
-            projectId: $storeProjectRequest->validated('project_id'),
-            name: $storeProjectRequest->validated('name'),
-            result: $storeProjectRequest->validated('result'),
-            description: $storeProjectRequest->validated('description'),
+            projectId: $storeModuleRequest->validated('project_id'),
+            name: $storeModuleRequest->validated('name'),
+            result: $storeModuleRequest->validated('result'),
+            description: $storeModuleRequest->validated('description'),
         );
     }
 
-    public static function fromUpdateRequest(UpdateModuleRequest $updateProjectRequest)
+    public static function fromUpdateRequest(UpdateModuleRequest $updateModuleRequest)
     {
         return new self(
-            projectId: $updateProjectRequest->validated('project_id'),
-            name: $updateProjectRequest->validated('name'),
-            result: $updateProjectRequest->validated('result'),
-            description: $updateProjectRequest->validated('description'),
+            projectId: $updateModuleRequest->validated('project_id'),
+            name: $updateModuleRequest->validated('name'),
+            result: $updateModuleRequest->validated('result'),
+            description: $updateModuleRequest->validated('description'),
         );
     }
 
