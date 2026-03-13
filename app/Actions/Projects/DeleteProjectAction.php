@@ -6,9 +6,6 @@ use App\Repositories\Interfaces\ProjectRepositoryInterface;
 
 class DeleteProjectAction
 {
-    /**
-     * Create a new class instance.
-     */
     public function __construct(
         protected ProjectRepositoryInterface $projectRepo,
     ) {}

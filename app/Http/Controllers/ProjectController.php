@@ -37,7 +37,7 @@ class ProjectController extends Controller
         return $this->success(
             new ProjectResource($project),
             'POST',
-            'Projec registered successfully',
+            'Project registered successfully',
             Response::HTTP_CREATED,
         );
     }
