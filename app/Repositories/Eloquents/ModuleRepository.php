@@ -37,21 +37,21 @@ class ModuleRepository implements ModuleRepositoryInterface
 
     public function update(string $id, array $data): Module
     {
-        $Module = $this->findById($id);
-        if (!$Module) {
+        $module = $this->findById($id);
+        if (!$module) {
             throw new \Exception("Module not found");
         }
 
-        $Module->update($data);
-        return $Module;
+        $module->update($data);
+        return $module;
     }
 
     public function delete(string $id): bool
     {
-        $Module = $this->findById($id);
-        if (!$Module) {
+        $module = $this->findById($id);
+        if (!$module) {
             return false;
         }
-        return $Module->delete();
+        return $module->delete();
     }
 }
