@@ -16,6 +16,8 @@ class UserResource extends JsonApiResource
     {
         return [
             'id' => $this->id,
+            'token_type' => 'Bearer',
+            'token' => $this->token,
             'name' => $this->name,
             'email' => $this->email,
         ];

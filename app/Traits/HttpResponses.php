@@ -18,7 +18,6 @@ trait HTTPResponses
         return response([
             'http' => $this->buildHttpMeta($method, $message, $status),
             'data' => $resolvedPayload['data'],
-            'meta' => $resolvedPayload['meta'],
         ], $status);
     }
 
@@ -44,7 +43,6 @@ trait HTTPResponses
         if (!$payload instanceof JsonResource) {
             return [
                 'data' => $payload,
-                'meta' => [],
             ];
         }
 
@@ -52,7 +50,6 @@ trait HTTPResponses
 
         return [
             'data' => $resourceResponse['data'] ?? $resourceResponse,
-            'meta' => $resourceResponse['meta'] ?? [],
         ];
     }
 

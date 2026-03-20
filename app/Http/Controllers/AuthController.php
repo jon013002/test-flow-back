@@ -23,16 +23,8 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         $result = $this->authService->register($request->validated());
-        $resource = (new UserResource($result['user']))
-            ->additional([
-                'meta' => [
-                    'token_type' => 'Bearer',
-                    'token' => $result['token'],
-                ]
-        ]);
-
         return $this->success(
-            $resource,
+            new UserResource($result),
             'POST',
             'User registered successfully',
             Response::HTTP_CREATED,
@@ -42,15 +34,8 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $result = $this->authService->validateCredentials($request->email, $request->password);
-        $resource = (new UserResource($result['user']))
-            ->additional([
-                'meta' => [
-                    'token' => $result['token'],
-                ]
-        ]);
-
         return $this->success(
-            $resource,
+            new UserResource($result),
             'POST',
             'Logged in successfully',
             Response::HTTP_OK,
